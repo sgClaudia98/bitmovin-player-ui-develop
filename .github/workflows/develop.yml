@@ -3,7 +3,7 @@ name: Publish Gulp Docs
 on:
   push:
     branches:
-      - develop  # Adjust the branch name as needed
+      - main  # Adjust the branch name as needed
 
 jobs:
   build:
@@ -16,13 +16,16 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '16'  # Adjust the Node.js version as needed
+        node-version: '18'  # Adjust the Node.js version as needed
 
+    - name: Install gulp
+      run: npm install --global gulp-cli
+      
     - name: Install dependencies
-      run: npm install
-
+      run: npm install 
+      
     - name: Run gulp to generate docs
-      run: npm run gulp  # Ensure this command generates the documentation in the dist folder
+      run: gulp  # Ensure this command generates the documentation in the dist folder
 
     - name: Copy generated docs to docs folder
       run: |
