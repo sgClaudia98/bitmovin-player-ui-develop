@@ -171,7 +171,7 @@ export namespace UIFactory {
       components: [
         new BufferingOverlay(),
         new AdClickOverlay(),
-        new PlaybackToggleOverlay(),
+        new PlaybackToggleOverlay(),//test
         new Container({
           components: [
             new AdMessageLabel({ text: i18n.getLocalizer('ads.remainingTime')}),
