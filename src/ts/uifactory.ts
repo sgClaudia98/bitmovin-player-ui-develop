@@ -260,11 +260,23 @@ export namespace UIFactory {
       components: [
         new Container({
           components: [
-            new PlaybackTimeLabel({ timeLabelMode: PlaybackTimeLabelMode.CurrentTime, hideInLivePlayback: true }),
+            //new PlaybackTimeLabel({ timeLabelMode: PlaybackTimeLabelMode.CurrentTime, hideInLivePlayback: true }),
             new SeekBar({ label: new SeekBarLabel() }),
-            new PlaybackTimeLabel({ timeLabelMode: PlaybackTimeLabelMode.TotalTime, cssClasses: ['text-right'] }),
+            //new PlaybackTimeLabel({ timeLabelMode: PlaybackTimeLabelMode.TotalTime, cssClasses: ['text-right'] }),
           ],
           cssClasses: ['controlbar-top'],
+        }),
+        new Container({
+          components: [
+            new PlaybackToggleButton(),
+            new VolumeToggleButton(),
+            new VolumeSlider(),
+            new Spacer(),
+            new PictureInPictureToggleButton(),
+            new SettingsToggleButton({ settingsPanel: settingsPanel }),
+            new FullscreenToggleButton(),
+          ],
+          cssClasses: ['controlbar-bottom'],
         }),
       ],
     });
@@ -279,14 +291,10 @@ export namespace UIFactory {
         controlBar,
         new TitleBar({
           components: [
-            new MetadataLabel({ content: MetadataLabelContent.Title }),
+          //  new MetadataLabel({ content: MetadataLabelContent.Title }),
             new CastToggleButton(),
             new VRToggleButton(),
-            new PictureInPictureToggleButton(),
             new AirPlayToggleButton(),
-            new VolumeToggleButton(),
-            new SettingsToggleButton({ settingsPanel: settingsPanel }),
-            new FullscreenToggleButton(),
           ],
         }),
         settingsPanel,
