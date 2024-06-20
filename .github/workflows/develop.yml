@@ -3,7 +3,7 @@ name: Publish Gulp Docs
 on:
   push:
     branches:
-      - main  # Adjust the branch name as needed
+      - develop  # Adjust the branch name as needed
 
 jobs:
   build:
