@@ -1,0 +1,23 @@
+@import '../variables';
+
+%ui-up-next-item {
+  @extend %ui-component;
+
+  @include hidden;
+
+  position: absolute;
+  bottom: 18%;
+  right: 2%;
+}
+
+.#{$prefix}-up-next-thumbnail{
+    display: flow;
+    height: 120px;
+    max-width: 150px;
+    background-position: center;
+    background-size: cover;
+}
+
+.#{$prefix}-ui-up-next-item {
+  @extend %ui-up-next-item;
+}

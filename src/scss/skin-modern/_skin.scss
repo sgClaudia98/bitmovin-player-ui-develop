@@ -1,0 +1,162 @@
+@import 'variables';
+@import 'mixins';
+@import 'components/component';
+@import 'components/container';
+@import 'components/uicontainer';
+@import 'components/controlbar';
+@import 'components/button';
+@import 'components/playbacktogglebutton';
+@import 'components/fullscreentogglebutton';
+@import 'components/vrtogglebutton';
+@import 'components/volumetogglebutton';
+@import 'components/seekbar';
+@import 'components/watermark';
+@import 'components/hugeplaybacktogglebutton';
+@import 'components/label';
+@import 'components/settingspanel';
+@import 'components/settingspanelpage';
+@import 'components/settingspanelpageopenbutton';
+@import 'components/settingspanelpagebackbutton';
+@import 'components/settingstogglebutton';
+@import 'components/selectbox';
+@import 'components/listbox';
+@import 'components/seekbarlabel';
+@import 'components/volumeslider';
+@import 'components/subtitleoverlay';
+@import 'components/subtitleoverlay-cea608';
+@import 'components/volumecontrolbutton';
+@import 'components/casttogglebutton';
+@import 'components/caststatusoverlay';
+@import 'components/errormessageoverlay';
+@import 'components/titlebar';
+@import 'components/recommendationoverlay';
+@import 'components/upnextitem';
+@import 'components/clickoverlay';
+@import 'components/hugereplaybutton';
+@import 'components/replaybutton';
+@import 'components/playbacktimelabel';
+@import 'components/bufferingoverlay';
+@import 'components/playbacktoggleoverlay';
+@import 'components/closebutton';
+@import 'components/airplaytogglebutton';
+@import 'components/pictureinpicturetogglebutton';
+@import 'components/spacer';
+@import 'components/subtitlesettings/subtitlesettings';
+@import 'components/subtitlesettingspaneltogglebutton';
+@import 'components/audiotracksettingspaneltogglebutton';
+@import 'skin-ads';
+@import 'skin-cast-receiver';
+@import 'skin-smallscreen';
+@import 'skin-tv';
+
+.#{$prefix}-ui-uicontainer {
+  color: $color-primary;
+  font-family: $font-family;
+  font-size: $font-size;
+  text-align: left;
+  user-select: none;
+
+  &.#{$prefix}-player-state-idle {
+    .#{$prefix}-ui-controlbar,
+    .#{$prefix}-ui-titlebar,
+    .#{$prefix}-ui-hugeplaybacktogglebutton {
+      display: none;
+    }
+  }
+
+  &.#{$prefix}-player-state-finished {
+    .#{$prefix}-ui-controlbar,
+    .#{$prefix}-ui-hugeplaybacktogglebutton {
+      display: none;
+    }
+  }
+
+  .#{$prefix}-text-right {
+    text-align: right;
+  }
+
+  // sass-lint:disable force-element-nesting
+  &.#{$prefix}-layout-max-width-400 {
+    // Hide the description in ultra tiny players to not clog the UI too much
+    .#{$prefix}-ui-titlebar .#{$prefix}-label-metadata-description {
+      display: none;
+    }
+  }
+
+  &.#{$prefix}-layout-max-width-400,
+  &.#{$prefix}-layout-max-width-600 {
+    .#{$prefix}-ui-hugeplaybacktogglebutton {
+      font-size: .7em;
+    }
+
+    .#{$prefix}-ui-watermark {
+      font-size: .7em;
+    }
+  }
+
+  
+  .bmpui-seekbar-playbackposition {
+    background-color: #be2649!important;
+  }
+  .bmpui-seekbar-playbackposition-marker {
+      background-color: #be2649!important;
+  }
+  .bmpui-seekbar .bmpui-seekbar-playbackposition-marker {
+      background-color: white!important;
+  }
+  .bmpui-seekbar .bmpui-seekbar-playbackposition-marker {
+      border: white!important;
+  }
+  .bmpui-ui-seekbar .bmpui-seekbar-playbackposition-marker {
+      display: none;
+  }
+  .bmpui-ui-seekbar .bmpui-seekbar-playbackposition-marker {
+      display: none;
+  }
+  .bmpui-ui-seekbar:hover .bmpui-seekbar-playbackposition-marker {
+      display: block;
+  }
+  .bmpui-ui-rewindbutton {
+    background-image: url('../../assets/skin-modern/images/10smenys.svg');
+      background-size: contain;
+  }
+  .bmpui-ui-forwardbutton {
+      background-image: url('../../assets/skin-modern/images/10smes.svg');
+      background-size: contain;
+  }
+  .bmpui-ui-startoverbutton {
+    background-image: url('../../assets/skin-modern/images/torna_inici.svg');
+      background-size: contain;
+  }
+  .bmpui-ui-livebutton {
+      background-image: url('../../assets/skin-modern/images/torna_directe.svg');
+      background-size: contain;
+  }
+  .bmpui-up-next-close{
+      background-image: url('../../assets/skin-modern/images/tanca.svg');
+      background-size: contain;
+      top: 2%;
+      right: 1%;
+      position: absolute;
+  }
+  .bmpui-ui-mosaicbutton {
+      background-image: url('../../assets/skin-modern/images/mosaic.svg');
+      background-size: contain;
+  }
+  .bmpui-ui-mosaicetiqueta {
+      top: 2em;
+      left: 2em;
+      position: absolute;
+  }
+  .bmpui-ui-mosaictancabutton {
+      background-image: url('../../assets/skin-modern/images/tanca.svg');
+      background-size: contain;
+      top: 2em;
+      right: 2em;
+      position: absolute;
+  }
+  .bmpui-ui-popupbutton {
+    background-image: url('../../assets/skin-modern/images/popup.svg');
+    background-size: contain;
+  }
+}
