@@ -258,7 +258,6 @@ export namespace UIFactory {
 
     let controlBar = new ControlBar({
       components: [
-        settingsPanel,
         new Container({
           components: [
             //new PlaybackTimeLabel({ timeLabelMode: PlaybackTimeLabelMode.CurrentTime, hideInLivePlayback: true }),
@@ -298,6 +297,7 @@ export namespace UIFactory {
             new AirPlayToggleButton(),
           ],
         }),
+        settingsPanel,
         new Watermark(),
         new ErrorMessageOverlay(),
       ],
