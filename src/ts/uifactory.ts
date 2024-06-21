@@ -398,7 +398,7 @@ export namespace UIFactory {
           && context.documentWidth < smallScreenSwitchWidth;
       },
     }, {
-      ui: modernUI(),
+      ui: modernSmallScreenUI(),
       condition: (context: UIConditionContext) => {
         return !context.isAd && !context.adRequiresUi;
       },
