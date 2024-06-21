@@ -51,11 +51,11 @@ var paths = {
     json: ['./src/ts/**/*.json']
   },
   target: {
-    html: './dist',
-    js: './dist/js',
-    jsframework: './dist/js/framework',
+    html: './docs',
+    js: './docs/js',
+    jsframework: './docs/js/framework',
     jsmain: `${outputnames.filename}.js`,
-    css: './dist/css'
+    css: './docs/css'
   }
 };
 

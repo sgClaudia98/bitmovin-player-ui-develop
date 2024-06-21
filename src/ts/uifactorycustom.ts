@@ -83,7 +83,7 @@ export namespace UIFactoryCustom {
     }, {
       ui: customEmbedMobileUI(player, config),
       condition: (context: UIConditionContext) => {
-        return !context.isAd && !context.adRequiresUi && context.isMobile && isEmbedApp(context.isMobile);
+        return !context.isAd && !context.adRequiresUi ;//&& context.isMobile && isEmbedApp(context.isMobile);
       },
     }, {
       ui: customUI(player, config),
