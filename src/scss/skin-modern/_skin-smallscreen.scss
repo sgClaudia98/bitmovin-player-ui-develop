@@ -4,6 +4,15 @@
 .#{$prefix}-ui-skin-smallscreen {
   font-size: 1.2em;
 
+  .#{$prefix}-ui-controlbar {
+    .#{$prefix}-controlbar-bottom {
+      >.#{$prefix}-container-wrapper {
+        display: flex;
+        margin: .2em 0;
+      }
+    }
+  }
+
   .#{$prefix}-ui-settings-panel {
     @include layout-cover;
     @include layout-center-children-in-container;
@@ -14,7 +23,7 @@
       min-width: 15em;
     }
 
-    > .#{$prefix}-container-wrapper {
+    >.#{$prefix}-container-wrapper {
       margin: auto;
     }
 
@@ -36,7 +45,7 @@
   }
 
   .#{$prefix}-ui-titlebar {
-    > .#{$prefix}-container-wrapper {
+    >.#{$prefix}-container-wrapper {
       display: flex;
 
       .#{$prefix}-ui-label {
@@ -89,6 +98,7 @@
 
   // Adjustments for screen width x <= 400
   &.#{$prefix}-layout-max-width-400 {
+
     .#{$prefix}-ui-settings-panel,
     .#{$prefix}-ui-hugeplaybacktogglebutton,
     .#{$prefix}-ui-hugereplaybutton,
@@ -102,6 +112,7 @@
 
   // Adjustments for screen width 400 < x <= 600
   &.#{$prefix}-layout-max-width-600 {
+
     .#{$prefix}-ui-settings-panel,
     .#{$prefix}-ui-hugeplaybacktogglebutton,
     .#{$prefix}-ui-hugereplaybutton,
@@ -124,12 +135,12 @@
   // sass-lint:disable nesting-depth
   &.#{$prefix}-no-flexbox {
     .#{$prefix}-ui-titlebar {
-      > .#{$prefix}-container-wrapper {
+      >.#{$prefix}-container-wrapper {
         border-spacing: .5em 0;
         display: table;
         width: 100%;
 
-        > * {
+        >* {
           @include hidden; // Add hidden here too, else it is overwritten by display: table-cell
 
           display: table-cell;

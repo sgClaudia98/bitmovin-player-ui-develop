@@ -1,0 +1,38 @@
+name: Publish Gulp Docs
+
+on:
+  push:
+    branches:
+      - main  # Adjust the branch name as needed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'  # Adjust the Node.js version as needed
+
+    - name: Install gulp
+      run: npm install --global gulp-cli
+      
+    - name: Install dependencies
+      run: npm install 
+      
+    - name: Run gulp to generate docs
+      run: gulp  # Ensure this command generates the documentation in the dist folder
+
+    - name: Copy generated docs to docs folder
+      run: |
+        rm -rf docs
+        mv dist docs
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add docs
+        git commit -m "Update docs"
+        git push
