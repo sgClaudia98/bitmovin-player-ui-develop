@@ -56,46 +56,23 @@ export interface UIConfigCustom extends UIConfig {
 
 export namespace UIFactoryCustom {
 
-  function isEmbedApp(isMobile: boolean) {
-    const currentLocation = window.location.href || '';
-    const has3catEmbedPath = currentLocation.includes('/embed2/appmobil/video') || currentLocation.includes('/embed/appmobil/video');
-    const has3catWebviewQuerystring = currentLocation.includes('webview=yes') || currentLocation.includes('webview=true');
-    const hasCcmaEmbedPath = currentLocation.includes('/video/app/embed') || currentLocation.includes('/video/app/embed2')
-            || currentLocation.includes('/video/appsx3/embed') || currentLocation.includes('/video/appsx3/embed2');
-    return isMobile // nomes detectem embeds amb user-agent mòbil
-      && (
-        ( has3catEmbedPath && has3catWebviewQuerystring ) // checks 3cat, embed i embed2
-        || ( hasCcmaEmbedPath ) // checks CCMA, embed i embed2
-      );
-  }
 
   export function buildModernUI(player: PlayerAPI, config: UIConfigCustom = {}): UIManager {
-    return new UIManager(player, [{
-      ui: customEmbedMobileAdsUI(),
-      condition: (context: UIConditionContext) => {
-        return context.isAd && context.adRequiresUi && isEmbedApp(context.isMobile);
-      },
-    }, {
+    return new UIManager(player, [ {
       ui: customAdsUI(),
       condition: (context: UIConditionContext) => {
-        return context.isAd && context.adRequiresUi && !isEmbedApp(context.isMobile);
+        return context.isAd && context.adRequiresUi ;
       },
-    }, {
-      ui: customEmbedMobileUI(player, config),
+    },  {
+      ui: makeCustomUI(player, config),
       condition: (context: UIConditionContext) => {
-        return !context.isAd && !context.adRequiresUi ;//&& context.isMobile && isEmbedApp(context.isMobile);
-      },
-    }, {
-      ui: customUI(player, config),
-      condition: (context: UIConditionContext) => {
-        return !context.isAd && !context.adRequiresUi && !isEmbedApp(context.isMobile);
+        return !context.isAd && !context.adRequiresUi ;
       },
     }], config);
   }
 
-  function makeCustomUI(player: PlayerAPI, config: UIConfigCustom, isEmbedApp: boolean) {
-    const currentLocation = window.location.href || '';
-
+  function makeCustomUI(player: PlayerAPI, config: UIConfigCustom) {
+    
     let mainSettingsPanelPage = new SettingsPanelPage({
       components: [
         new SettingsPanelItem(i18n.getLocalizer('settings.video.quality'), new VideoQualitySelectBox()),
@@ -200,6 +177,7 @@ export namespace UIFactoryCustom {
       text: i18n.getLocalizer('pictureInPicture'),
       cssClass: 'ui-piptogglebutton',
     });
+
     pipButton.onClick.subscribe(async function () {
         try {
             if (player.getVideoElement() !== document.pictureInPictureElement) {
@@ -224,33 +202,7 @@ export namespace UIFactoryCustom {
       player.pause();
     });
 
-    // construccio de les controlbars
-    const embedAppControlBarBottomComponents = currentLocation.includes('/video/app/embed') || currentLocation.includes('/video/app/embed2')
-      ? [
-        new ControlsOverlay(),
-        new VolumeToggleButton(),
-        new VolumeSlider(),
-        new Spacer(),
-        subtitlesToggleButton,
-        new SettingsToggleButton({ settingsPanel: settingsPanel }),
-        mosaicButton,
-        new FullscreenToggleButton(),
-        new VRToggleButton(),
-      ]
-      : [
-        new ControlsOverlay(),
-        new VolumeToggleButton(),
-        new VolumeSlider(),
-        new Spacer(),
-        subtitlesToggleButton,
-        new SettingsToggleButton({ settingsPanel: settingsPanel }),
-        mosaicButton,
-        new VRToggleButton(),
-      ];
-
-    let controlBarBottomComponents = isEmbedApp
-      ? embedAppControlBarBottomComponents
-      : [
+    let controlBarBottomComponents = [
       new ControlsOverlay(),
       new VolumeToggleButton(),
       new VolumeSlider(),
@@ -305,14 +257,7 @@ export namespace UIFactoryCustom {
       ],
     });
   }
-
-  export function customEmbedMobileUI(player: PlayerAPI, config: UIConfigCustom) {
-    return makeCustomUI(player, config, true);
-  }
-
-  export function customUI(player: PlayerAPI, config: UIConfigCustom) {
-    return makeCustomUI(player, config, false);
-  }
+  
 
   /****************************************************/
   // ads ui
